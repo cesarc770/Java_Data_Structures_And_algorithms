@@ -91,6 +91,20 @@ public class TwoDimensionalArray {
         }
     }
 
+    //delete all
+    public void deleteAll() {
+        System.out.println("\nDeleting from all rows and columns");
+        for(int i = 0; i < this.arr.length; i++) {
+           for(int j = 0; j < this.arr[0].length; j++) {
+               this.arr[i][j] = Integer.MIN_VALUE;
+
+           }
+        }
+
+        System.out.println("Delete Successful!");
+    }
+
+
     /*EXTRA: Zero Matrix  from Cracking the coding interview page 91
     if an element of an array is zero set the rest of the elements in that row and column to zero
     */
@@ -103,8 +117,8 @@ public class TwoDimensionalArray {
         for(int i = 0; i < this.arr.length; i ++) {
             for (int j = 0; j < this.arr[0].length; j++) {
                 if(this.arr[i][j] == 0) {
-                   row[i] = true;
-                   column[j] = true;
+                    row[i] = true;
+                    column[j] = true;
                 }
             }
         }
@@ -130,6 +144,48 @@ public class TwoDimensionalArray {
 
 
     }
+
+    /*EXTRA: Variation of previous one but instead of reassining, I should use the insert function for this class.
+    this occured to me after I ran the zero function for the third time and did not get errors
+   */
+    public void zeroMatrixWithInsert() {
+        //To store row and column to zeroise
+        boolean row[] = new boolean[this.arr.length];
+        boolean column[] = new boolean[this.arr[0].length];
+
+        //find column and row
+        for(int i = 0; i < this.arr.length; i ++) {
+            for (int j = 0; j < this.arr[0].length; j++) {
+                if(this.arr[i][j] == 0) {
+                    row[i] = true;
+                    column[j] = true;
+                }
+            }
+        }
+
+        //zero row
+        for(int i = 0; i < this.arr.length; i ++) {
+            for (int j = 0; j < this.arr[0].length; j++) {
+                if(row[i] == true) {
+                    this.insert(i,j,0);
+                }
+            }
+        }
+
+        //zero column
+        for(int i = 0; i < this.arr.length; i ++) {
+            for (int j = 0; j < this.arr[0].length; j++) {
+                if(column[j] == true) {
+                    this.insert(i,j,0);
+                }
+            }
+        }
+
+
+
+    }
+
+
 
 
 

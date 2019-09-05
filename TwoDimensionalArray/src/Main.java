@@ -34,6 +34,35 @@ public class Main {
         tda.zeroMatrix();
         tda.traverseArray();
 
+        //What if I do it twice?
+        System.out.println("Zero Matrix for second time");
+        tda.zeroMatrix();
+        tda.traverseArray();
+
+        //what if doing it a third time
+        System.out.println("Zero Matrix for third time");
+        tda.zeroMatrix();
+        tda.traverseArray();
+
+        //added a function to delete all 0
+        tda.deleteAll();
+
+        //Extra: adding a zero value and zeroing matrix
+        tda.insert(1,3,0);
+        tda.traverseArray();
+
+        //Using insert with zero matrix should call insert everytime a 0 is added to a cell
+        System.out.println("\nUsing insert for zero matrix\n");
+        tda.zeroMatrixWithInsert();
+        System.out.println("");
+        tda.traverseArray();
+
+        //One more time.. should print errors
+        System.out.println("\nUsing insert for zero matrix for a second time\n");
+        tda.zeroMatrixWithInsert();
+        System.out.println("");
+        tda.traverseArray();
+
 
 
 
