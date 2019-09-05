@@ -87,6 +87,46 @@ public class TwoDimensionalArray {
         }
     }
 
+    /*EXTRA: Zero Matrix  from Cracking the coding interview page 91
+    if an element of an array is zero set the rest of the elements in that row and column to zero
+    */
+    public void zeroMatrix() {
+        //To store row and column to zeroise
+        boolean row[] = new boolean[this.arr.length];
+        boolean column[] = new boolean[this.arr[0].length];
+
+        //find column and row
+        for(int i = 0; i < this.arr.length; i ++) {
+            for (int j = 0; j < this.arr[0].length; j++) {
+                if(this.arr[i][j] == 0) {
+                   row[i] = true;
+                   column[j] = true;
+                }
+            }
+        }
+
+        //zero row
+        for(int i = 0; i < this.arr.length; i ++) {
+            for (int j = 0; j < this.arr[0].length; j++) {
+                if(row[i] == true) {
+                    this.arr[i][j] = 0;
+                }
+            }
+        }
+
+        //zero column
+        for(int i = 0; i < this.arr.length; i ++) {
+            for (int j = 0; j < this.arr[0].length; j++) {
+                if(column[j] == true) {
+                    this.arr[i][j] = 0;
+                }
+            }
+        }
+
+
+
+    }
+
 
 
 

@@ -28,6 +28,12 @@ public class Main {
         System.out.println("\nAfter Deleting...");
         tda.traverseArray();
 
+        //Extra: adding a zero value and zeroing matrix
+        tda.insert(1,3,0);
+        tda.traverseArray();
+        tda.zeroMatrix();
+        tda.traverseArray();
+
 
 
 
