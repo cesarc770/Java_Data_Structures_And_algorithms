@@ -22,7 +22,11 @@ public class TwoDimensionalArray {
         try {
             for(int i = 0; i < this.arr.length; i++) {
                 for(int j = 0; j < this.arr[0].length; j++) {
-                    System.out.print(arr[i][j] + " ");
+                   if (arr[i][j] == 0) {
+                       System.out.printf( "      " + arr[i][j] + "     ");
+                   } else {
+                       System.out.printf(arr[i][j] +  " ");
+                   }
                 }
                 System.out.println();
             }
