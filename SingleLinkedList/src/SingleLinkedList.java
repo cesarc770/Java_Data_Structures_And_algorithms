@@ -57,7 +57,7 @@ public class SingleLinkedList {
            SingleNode tempNode = head;
            int index = 0;
 
-           while(index < location - 1);
+           while(index < location - 1)
            {
                tempNode = tempNode.getNext();
                index++;
@@ -71,10 +71,64 @@ public class SingleLinkedList {
     }
 
     //traversing
+    public void traverseSLL() {
+       if (this.existsLinkedList(this.getHead())) {
+           SingleNode tempNode = this.getHead();
+           for(int i = 0; i < this.getSize(); i++){
+               System.out.print(tempNode.getValue());
+               if(i != this.getSize() - 1) {
+                   System.out.print(" -> ");
+               }
+               tempNode = tempNode.getNext();
+           }
+       }else {
+           System.out.println("Linked List does not exists !");
+       }
+        System.out.println("\n");
+
+    }
 
     //deletion of a node
+    public void deleteFromLinkedList(int location) {
+
+        if(!existsLinkedList(this.head)) {
+            System.err.println("Linked list does nto exist!");
+            return;
+        } else if (location == 0) {
+            this.head = this.head.getNext();
+            setSize(getSize()-1);
+            if(getSize() == 0) {
+                tail = null;
+            }
+        } else if (location >= size) {
+            SingleNode tempNode = head;
+            for(int i = 0; i < this.getSize() -1; i++) {
+                tempNode = tempNode.getNext();
+            }
+
+            if(tempNode == head) {
+                this.head = this.tail = null;
+                this.setSize(this.getSize()-1);
+                return;
+            }
+
+            tempNode.setNext(null);
+            this.tail.setValue(tempNode);
+            this.setSize(this.getSize()-1);
+
+        } else {
+            SingleNode tempNode = head;
+            for(int i = 0; i < location -1; i++) {
+                tempNode = tempNode.getNext();
+            }
+
+            tempNode.setNext(tempNode.getNext().getNext());
+            this.setSize(this.getSize()-1);
+        }
+    }
 
     //deletion of linkedlist
+
 
 
     //helper function to check if linkelist exists meaning it has a head
