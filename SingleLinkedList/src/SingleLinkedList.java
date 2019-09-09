@@ -128,6 +128,10 @@ public class SingleLinkedList {
     }
 
     //deletion of linkedlist
+    public void deleteLinkedList() {
+       this.head = this.tail = null;
+        System.out.println("Deleted Linked List");
+    }
 
 
 
