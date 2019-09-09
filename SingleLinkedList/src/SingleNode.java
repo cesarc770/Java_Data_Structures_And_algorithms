@@ -1,6 +1,6 @@
-public class SingleNode {
+public class SingleNode<T> {
 
-    private Object value;
+    private T value;
     private SingleNode next;
 
     public SingleNode() {
@@ -8,12 +8,12 @@ public class SingleNode {
         this.next = null;
     }
 
-    public SingleNode(Object value) {
+    public SingleNode(T value) {
         this.value = value;
         this.next = null;
     }
 
-    public SingleNode(Object value, SingleNode nextNode) {
+    public SingleNode(T value, SingleNode nextNode) {
         this.value = value;
         this.next = nextNode;
     }
@@ -21,11 +21,11 @@ public class SingleNode {
     //getters and setters
 
 
-    public Object getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(T value) {
         this.value = value;
     }
 

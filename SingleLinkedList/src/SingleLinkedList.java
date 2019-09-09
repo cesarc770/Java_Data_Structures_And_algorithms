@@ -1,33 +1,33 @@
-public class SingleLinkedList {
+public class SingleLinkedList<T> {
 
-   private SingleNode head = null;
-   private SingleNode tail = null;
+   private SingleNode<T> head = null;
+   private SingleNode<T> tail = null;
    private int size;
 
    public SingleLinkedList() {}
 
     //creation
-    public SingleLinkedList(Object nodeValue) {
-       SingleNode node = new SingleNode(nodeValue);
+    public SingleLinkedList(T nodeValue) {
+       SingleNode<T> node = new SingleNode<>(nodeValue);
        this.head = node;
        this.tail = node;
        this.size = 1;
     }
 
     //getters and setters
-    public SingleNode getHead() {
+    public SingleNode<T> getHead() {
         return head;
     }
 
-    public void setHead(SingleNode head) {
+    public void setHead(SingleNode<T> head) {
         this.head = head;
     }
 
-    public SingleNode getTail() {
+    public SingleNode<T> getTail() {
         return tail;
     }
 
-    public void setTail(SingleNode tail) {
+    public void setTail(SingleNode<T> tail) {
         this.tail = tail;
     }
 
@@ -41,8 +41,8 @@ public class SingleLinkedList {
 
 
     //insertion
-    public void insertInLinkedList(Object nodeValue, int location) {
-       SingleNode newNode = new SingleNode(nodeValue);
+    public void insertInLinkedList(T nodeValue, int location) {
+       SingleNode<T> newNode = new SingleNode<>(nodeValue);
 
        if(!existsLinkedList(this.head)) {
            System.err.println("Linked list does nto exist!");
@@ -54,7 +54,7 @@ public class SingleLinkedList {
            this.tail.setNext(newNode);
            this.tail = newNode;
        } else {
-           SingleNode tempNode = head;
+           SingleNode<T> tempNode = head;
            int index = 0;
 
            while(index < location - 1)
@@ -73,7 +73,7 @@ public class SingleLinkedList {
     //traversing
     public void traverseSLL() {
        if (this.existsLinkedList(this.getHead())) {
-           SingleNode tempNode = this.getHead();
+           SingleNode<T> tempNode = this.getHead();
            for(int i = 0; i < this.getSize(); i++){
                System.out.print(tempNode.getValue());
                if(i != this.getSize() - 1) {
@@ -101,7 +101,7 @@ public class SingleLinkedList {
                 tail = null;
             }
         } else if (location >= size) {
-            SingleNode tempNode = head;
+            SingleNode<T> tempNode = head;
             for(int i = 0; i < this.getSize() -1; i++) {
                 tempNode = tempNode.getNext();
             }
@@ -113,7 +113,7 @@ public class SingleLinkedList {
             }
 
             tempNode.setNext(null);
-            this.tail.setValue(tempNode);
+            this.tail = tempNode;
             this.setSize(this.getSize()-1);
 
         } else {
