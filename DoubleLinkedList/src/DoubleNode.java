@@ -7,16 +7,19 @@ public class DoubleNode<T> {
     public DoubleNode() {
         this.value = null;
         this.next = null;
+        this.prev = null;
     }
 
     public DoubleNode(T value) {
         this.value = value;
         this.next = null;
+        this.prev = null;
     }
 
-    public DoubleNode(T value, DoubleNode nextNode) {
+    public DoubleNode(T value, DoubleNode nextNode , DoubleNode prevNode) {
         this.value = value;
         this.next = nextNode;
+        this.prev = prevNode;
     }
 
     //getters and setters
@@ -37,4 +40,8 @@ public class DoubleNode<T> {
     public void setNext(DoubleNode next) {
         this.next = next;
     }
+
+    public DoubleNode getPrev() { return prev; }
+
+    public void setPrev(DoubleNode prev) { this.prev = prev; }
 }
