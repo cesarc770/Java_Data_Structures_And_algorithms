@@ -49,9 +49,11 @@ public class DoubleLinkedList<T> {
            return;
        } else if (location == 0) {
            newNode.setNext(this.head);
+           this.head.setPrev(newNode);
            this.head = newNode;
        } else if (location >= size) {
            this.tail.setNext(newNode);
+           newNode.setPrev(this.tail);
            this.tail = newNode;
        } else {
            DoubleNode<T> tempNode = head;
@@ -64,7 +66,9 @@ public class DoubleLinkedList<T> {
            }
 
            newNode.setNext(tempNode.getNext());
+           newNode.setPrev(tempNode);
            tempNode.setNext(newNode);
+           newNode.getNext().setPrev(newNode);
 
        }
         setSize(getSize()+1);
@@ -88,6 +92,39 @@ public class DoubleLinkedList<T> {
 
     }
 
+    //traversing in reverse
+    public void traverseSLLInReverse() {
+        if (this.existsLinkedList(this.getHead())) {
+            DoubleNode<T> tempNode = this.getTail();
+            for(int i = 0; i < this.getSize(); i++){
+                System.out.print(tempNode.getValue());
+                if(i != this.getSize() - 1) {
+                    System.out.print(" <- ");
+                }
+                tempNode = tempNode.getPrev();
+            }
+        }else {
+            System.out.println("Linked List does not exists !");
+        }
+        System.out.println("\n");
+
+    }
+
+    boolean search(T nodeValue) {
+        if(existsLinkedList(this.head)) {
+            DoubleNode tempNode = this.head;
+            for(int i =0; i<size;i++) {
+                if(tempNode.getValue() == nodeValue) {
+                    System.out.print("Found the node at locaiton: " + i);
+                    return true;
+                }
+                tempNode=tempNode.getNext();
+            }
+        }
+        System.out.print("Node not found!! ");
+        return false;
+    }
+
     //deletion of a node
     public void deleteFromLinkedList(int location) {
 
@@ -96,17 +133,16 @@ public class DoubleLinkedList<T> {
             return;
         } else if (location == 0) {
             this.head = this.head.getNext();
+            this.head.setPrev(null);
             setSize(getSize()-1);
             if(getSize() == 0) {
-                tail = null;
+                this.tail = null;
+                this.head = null;
             }
         } else if (location >= size) {
-            DoubleNode<T> tempNode = head;
-            for(int i = 0; i < this.getSize() -1; i++) {
-                tempNode = tempNode.getNext();
-            }
+            DoubleNode<T> tempNode = this.getTail().getPrev();//Do not have to loop in a double linked list
 
-            if(tempNode == head) {
+            if(tempNode == this.head) {
                 this.head = this.tail = null;
                 this.setSize(this.getSize()-1);
                 return;
@@ -117,19 +153,27 @@ public class DoubleLinkedList<T> {
             this.setSize(this.getSize()-1);
 
         } else {
-            DoubleNode tempNode = head;
+            DoubleNode tempNode = this.head;
             for(int i = 0; i < location -1; i++) {
                 tempNode = tempNode.getNext();
             }
 
             tempNode.setNext(tempNode.getNext().getNext());
+            tempNode.getNext().setPrev(tempNode);
             this.setSize(this.getSize()-1);
         }
     }
 
     //deletion of linkedlist
     public void deleteLinkedList() {
-       this.head = this.tail = null;
+       //will have to loop since it is a double linkedlist
+        DoubleNode<T> tempNode = this.head;
+        for(int i = 0; i < this.size; i++) {
+            tempNode.setPrev(null);
+            tempNode = tempNode.getNext();
+
+        }
+        this.head = this.tail = null;
         System.out.println("Deleted Linked List");
     }
 
