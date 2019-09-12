@@ -11,6 +11,8 @@ public class CircularDoubleLinkedList<T> {
        DoubleNode<T> node = new DoubleNode<>(nodeValue);
        this.head = node;
        this.tail = node;
+       this.head.setPrev(this.tail);
+       this.tail.setNext(this.head);
        this.size = 1;
     }
 
@@ -51,10 +53,14 @@ public class CircularDoubleLinkedList<T> {
            newNode.setNext(this.head);
            this.head.setPrev(newNode);
            this.head = newNode;
+           this.head.setPrev(this.tail);
+           this.tail.setNext(this.head);
        } else if (location >= size) {
            this.tail.setNext(newNode);
            newNode.setPrev(this.tail);
            this.tail = newNode;
+           this.tail.setNext(this.head);
+           this.head.setPrev(this.tail);
        } else {
            DoubleNode<T> tempNode = head;
            int index = 0;
@@ -75,7 +81,7 @@ public class CircularDoubleLinkedList<T> {
     }
 
     //traversing
-    public void traverseDLL() {
+    public void traverseCDLL() {
        if (this.existsLinkedList(this.getHead())) {
            DoubleNode<T> tempNode = this.getHead();
            for(int i = 0; i < this.getSize(); i++){
@@ -93,7 +99,7 @@ public class CircularDoubleLinkedList<T> {
     }
 
     //traversing in reverse
-    public void traverseDLLInReverse() {
+    public void traverseCDLLInReverse() {
         if (this.existsLinkedList(this.getHead())) {
             DoubleNode<T> tempNode = this.getTail();
             for(int i = 0; i < this.getSize(); i++){
@@ -174,6 +180,8 @@ public class CircularDoubleLinkedList<T> {
             tempNode = tempNode.getNext();
 
         }
+        head.setPrev(null);
+        tail.setNext(null);
         this.head = this.tail = null;
         System.out.println("Deleted Linked List");
     }
