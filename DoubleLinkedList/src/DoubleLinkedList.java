@@ -75,7 +75,7 @@ public class DoubleLinkedList<T> {
     }
 
     //traversing
-    public void traverseSLL() {
+    public void traverseDLL() {
        if (this.existsLinkedList(this.getHead())) {
            DoubleNode<T> tempNode = this.getHead();
            for(int i = 0; i < this.getSize(); i++){
@@ -93,7 +93,7 @@ public class DoubleLinkedList<T> {
     }
 
     //traversing in reverse
-    public void traverseSLLInReverse() {
+    public void traverseDLLInReverse() {
         if (this.existsLinkedList(this.getHead())) {
             DoubleNode<T> tempNode = this.getTail();
             for(int i = 0; i < this.getSize(); i++){
@@ -158,8 +158,9 @@ public class DoubleLinkedList<T> {
                 tempNode = tempNode.getNext();
             }
 
-            tempNode.setNext(tempNode.getNext().getNext());
             tempNode.getNext().setPrev(tempNode);
+            tempNode.setNext(tempNode.getNext().getNext());
+
             this.setSize(this.getSize()-1);
         }
     }
